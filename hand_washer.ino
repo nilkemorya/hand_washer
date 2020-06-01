@@ -1,9 +1,9 @@
 //Based on Handwash1 by quintbuilds. Just some minor cleanup.
 #include <Adafruit_LEDBackpack.h>   //backback header
 #include <Adafruit_GFX.h>           //Graphics header
-#include <Wire.h>                   //not sure
+#include <Wire.h>                   //i2c communications library
 
-int wash_time = 0;            //time washing
+int wash_time = 0;            //counter of time spent washing hands
 char countOnes = '0'; //counter for ones position
 char countTens = '0'; //counter for tens position
 int timeout_count = 0;            //timeout timer
@@ -25,8 +25,9 @@ bool hold_mode = false;
 bool no_soap_reset = false;
 
 //If the above is 1, then set this to the soaping delay you want. Otherwise this variable is useless.
-int soap_hold_time = 5000; //Recommended
+int soap_hold_time = 5000;
 
+// Milliseconds to display words for, 500 is too fast, 1000 is too slow. 
 int text_hold_time = 750;
 
 Adafruit_AlphaNum4 alpha4 = Adafruit_AlphaNum4();  //simplifies the class name
